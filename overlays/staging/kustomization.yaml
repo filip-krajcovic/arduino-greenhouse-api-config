@@ -1,0 +1,29 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+commonLabels:
+  app.kubernetes.io/component: backend
+  app.kubernetes.io/created-by: krajcot
+  app.kubernetes.io/managed-by: argo-cd
+  app.kubernetes.io/name: arduino-api
+
+resources:
+- ../../base
+- ingress.yaml
+
+configMapGenerator:
+- name: arduino-api
+  envs:
+  - configurations/application.properties
+  options:
+    disableNameSuffixHash: true
+  behavior: merge
+
+secretGenerator:
+- name: arduino-api-tls
+  files:
+    - secrets/tls.crt
+    - secrets/tls.key
+  type: "kubernetes.io/tls"
+  options:
+    disableNameSuffixHash: true

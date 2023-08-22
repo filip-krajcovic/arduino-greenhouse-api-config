@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: arduino-api
+spec:
+  replicas: 1
+  revisionHistoryLimit: 0
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: arduino-api
+  template:
+    spec:
+      containers:
+      - envFrom:
+        - configMapRef:
+            name: arduino-api
+        image: arduino-api
+        imagePullPolicy: Always
+        # livenessProbe:
+        #   failureThreshold: 3
+        #   httpGet:
+        #     path: /health/live
+        #     port: 5000
+        #   initialDelaySeconds: 60
+        #   periodSeconds: 30
+        #   successThreshold: 1
+        #   terminationGracePeriodSeconds: 60
+        #   timeoutSeconds: 10
+        name: arduino-api
+        ports:
+        - containerPort: 5000
+          protocol: TCP
+        # readinessProbe:
+        #   httpGet:
+        #     path: /health/ready
+        #     port: 5000
+        #   initialDelaySeconds: 90
+        #   periodSeconds: 60
+        #   successThreshold: 1
+        #   timeoutSeconds: 10
+        resources:
+          limits:
+            cpu: 10m
+            memory: 160Mi
+          requests:
+            cpu: 5m
+            memory: 80Mi
