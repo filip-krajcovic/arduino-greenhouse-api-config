@@ -24,4 +24,9 @@ configMapGenerator:
   - configurations/application.properties
   options:
     disableNameSuffixHash: true
+- name: arduino-api--mongodb
+  envs:
+  - configurations/mongodb.properties
+  options:
+    disableNameSuffixHash: true
 

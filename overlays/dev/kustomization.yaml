@@ -18,8 +18,31 @@ configMapGenerator:
   options:
     disableNameSuffixHash: true
   behavior: merge
+- name: arduino-api--mongodb
+  envs:
+  - configurations/mongodb.properties
+  options:
+    disableNameSuffixHash: true
+  behavior: merge
+- name: arduino-api--mqtt
+  envs:
+  - configurations/mqtt.properties
+  options:
+    disableNameSuffixHash: true
 
-# secretGenerator:
+secretGenerator:
+- name: arduino-api--mongodb
+  envs:
+  - secrets/mongodb.properties
+  type: Opaque
+  options:
+    disableNameSuffixHash: true
+- name: arduino-api--mqtt
+  envs:
+  - secrets/mqtt.properties
+  type: Opaque
+  options:
+    disableNameSuffixHash: true
 # - name: arduino-api-tls
 #   files:
 #     - secrets/tls.crt

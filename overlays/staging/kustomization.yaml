@@ -18,6 +18,17 @@ configMapGenerator:
   options:
     disableNameSuffixHash: true
   behavior: merge
+- name: arduino-api--mongodb
+  envs:
+  - configurations/mongodb.properties
+  options:
+    disableNameSuffixHash: true
+  behavior: merge
+- name: arduino-api--mqtt
+  envs:
+  - configurations/mqtt.properties
+  options:
+    disableNameSuffixHash: true
 
 secretGenerator:
 - name: arduino-api-tls
@@ -25,5 +36,17 @@ secretGenerator:
     - secrets/tls.crt
     - secrets/tls.key
   type: "kubernetes.io/tls"
+  options:
+    disableNameSuffixHash: true
+- name: arduino-api--mongodb
+  envs:
+  - secrets/mongodb.properties
+  type: Opaque
+  options:
+    disableNameSuffixHash: true
+ - name: arduino-api--mqtt
+  envs:
+  - secrets/mqtt.properties
+  type: Opaque
   options:
     disableNameSuffixHash: true

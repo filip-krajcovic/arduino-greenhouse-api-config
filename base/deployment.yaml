@@ -11,9 +11,34 @@ spec:
   template:
     spec:
       containers:
-      - envFrom:
+      - env:
+        - name: MONGO_USERNAME
+          valueFrom:
+            secretKeyRef:
+              key: username
+              name: arduino-api--mongodb
+        - name: MONGO_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: password
+              name: arduino-api--mongodb
+        - name: MQTT_USERNAME
+          valueFrom:
+            secretKeyRef:
+              key: username
+              name: users-ms--mqtt
+        - name: MQTT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: password
+              name: users-ms--mqtt
+        envFrom:
         - configMapRef:
             name: arduino-api
+        - configMapRef:
+            name: arduino-api--mqtt
+        - configMapRef:
+            name: arduino-api--mongodb
         image: arduino-api
         imagePullPolicy: Always
         # livenessProbe:
