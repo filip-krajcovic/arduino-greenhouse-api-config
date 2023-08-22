@@ -44,7 +44,7 @@ secretGenerator:
   type: Opaque
   options:
     disableNameSuffixHash: true
- - name: arduino-api--mqtt
+- name: arduino-api--mqtt
   envs:
   - secrets/mqtt.properties
   type: Opaque
