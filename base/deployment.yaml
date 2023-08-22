@@ -26,12 +26,12 @@ spec:
           valueFrom:
             secretKeyRef:
               key: username
-              name: users-ms--mqtt
+              name: arduino-api--mqtt
         - name: MQTT_PASSWORD
           valueFrom:
             secretKeyRef:
               key: password
-              name: users-ms--mqtt
+              name: arduino-api--mqtt
         envFrom:
         - configMapRef:
             name: arduino-api
