@@ -12,8 +12,7 @@ commonLabels:
 images:
 - name: arduino-api
   newName: filipkrajcovic/arduino-greenhouse-api
-  newTag: 0.0.4
-
+  newTag: 0.0.5
 resources:
 - deployment.yaml
 - service.yaml
