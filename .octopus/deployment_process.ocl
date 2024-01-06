@@ -1,0 +1,46 @@
+step "kustomize" {
+    name = "Kustomize"
+    package_requirement = "AfterPackageAcquisition"
+    properties = {
+        Octopus.Action.TargetRoles = "sample-app-server"
+    }
+
+    action {
+        action_type = "kustomize"
+        properties = {
+            Octopus.Action.RunOnServer = "true"
+        }
+        step_package_version = "2.0.2"
+        worker_pool = "hosted-ubuntu"
+
+        git_dependencies {
+            default_branch = "main"
+            git_credential_id = "GitCredentials-1"
+            git_credential_type = "Library"
+            repository_uri = "https://github.com/filip-krajcovic/arduino-greenhouse-api-config.git"
+            step_package_inputs_reference_id = "802bcfb8-26c0-4254-813f-5656703eaf7c"
+        }
+
+        inputs {
+            overlayPath = "overlays/#{Octopus.Environment.Name}"
+
+            gitSource {
+                defaultBranch = "main"
+                gitCredential = "GitCredentials-1"
+                isAnonymous = false
+                referenceId = "802bcfb8-26c0-4254-813f-5656703eaf7c"
+                url = "https://github.com/filip-krajcovic/arduino-greenhouse-api-config.git"
+            }
+
+            kubernetesObjectStatus {
+                enabled = true
+                timeout = 180
+                waitForJobs = false
+            }
+
+            substituteFiles {
+                filesToTarget = ""
+            }
+        }
+    }
+}
