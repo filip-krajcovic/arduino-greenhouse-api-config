@@ -22,7 +22,7 @@ step "kustomize" {
         }
 
         inputs {
-            overlayPath = "overlays/#{Octopus.Environment.Name}"
+            overlayPath = "overlays/dev"
 
             gitSource {
                 defaultBranch = "main"
