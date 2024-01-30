@@ -41,32 +41,30 @@ spec:
             name: arduino-api--mongodb
         image: arduino-api
         imagePullPolicy: Always
-        # livenessProbe:
-        #   failureThreshold: 3
-        #   httpGet:
-        #     path: /health/live
-        #     port: 5000
-        #   initialDelaySeconds: 60
-        #   periodSeconds: 30
-        #   successThreshold: 1
-        #   terminationGracePeriodSeconds: 60
-        #   timeoutSeconds: 10
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /health/live
+            port: 5000
+          initialDelaySeconds: 60
+          periodSeconds: 30
+          successThreshold: 1
+          terminationGracePeriodSeconds: 60
+          timeoutSeconds: 10
         name: arduino-api
         ports:
         - containerPort: 5000
           protocol: TCP
-        # readinessProbe:
-        #   httpGet:
-        #     path: /health/ready
-        #     port: 5000
-        #   initialDelaySeconds: 90
-        #   periodSeconds: 60
-        #   successThreshold: 1
-        #   timeoutSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /health/ready
+            port: 5000
+          initialDelaySeconds: 90
+          periodSeconds: 60
+          successThreshold: 1
+          timeoutSeconds: 10
         resources:
           limits:
-            cpu: 10m
-            memory: 160Mi
+            memory: 256Mi
           requests:
-            cpu: 5m
-            memory: 80Mi
+            memory: 256Mi
