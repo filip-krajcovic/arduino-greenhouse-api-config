@@ -63,8 +63,8 @@ spec:
           periodSeconds: 60
           successThreshold: 1
           timeoutSeconds: 10
-        resources:
-          limits:
-            memory: 256Mi
-          requests:
-            memory: 256Mi
+        # resources:
+        #   limits:
+        #     memory: 256Mi
+        #   requests:
+        #     memory: 256Mi
