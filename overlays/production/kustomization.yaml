@@ -31,13 +31,13 @@ configMapGenerator:
     disableNameSuffixHash: true
 
 secretGenerator:
-- name: arduino-api-tls
-  files:
-    - secrets/tls.crt
-    - secrets/tls.key
-  type: "kubernetes.io/tls"
-  options:
-    disableNameSuffixHash: true
+# - name: arduino-api-tls
+#   files:
+#     - secrets/tls.crt
+#     - secrets/tls.key
+#   type: "kubernetes.io/tls"
+#   options:
+#     disableNameSuffixHash: true
 - name: arduino-api--mongodb
   envs:
   - secrets/mongodb.properties
