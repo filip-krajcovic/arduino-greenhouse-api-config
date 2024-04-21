@@ -9,7 +9,7 @@ commonLabels:
 
 resources:
 - ../../base
-- ingress.yaml
+#- ingress.yaml
 
 configMapGenerator:
 - name: arduino-api
